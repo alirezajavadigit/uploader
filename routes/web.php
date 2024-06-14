@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\Test;
+use App\Http\Controllers\V1\DownloadController;
+use App\Http\Controllers\V1\UploadController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +16,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get("/", [UploadController::class, "index"])->name("index");
+Route::post("/upload", [UploadController::class, "upload"])->name("upload");
+Route::get("/download/{year}/{month}/{day}/{dayName}/{hour}/{minute}/{second}/{filename}", [DownloadController::class, "download"])->name("download");
