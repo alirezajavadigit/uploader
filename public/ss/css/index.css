@@ -1,0 +1,98 @@
+@font-face {
+	font-family: "dana";
+	src: url(/fonts/dana/dana-fanum-regular.woff2);
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+	color-scheme: dark;
+	font-family: dana;
+}
+
+.upload-zone {
+	&::after {
+		content: "";
+		position: absolute;
+		inset: 0;
+		background: rgb(167 139 250 / 20%);
+		mask-image: url(/assest/map-bg.webp);
+		mask-size: cover;
+		mask-repeat: no-repeat;
+		mask-position: center;
+		z-index: -1;
+		transition: 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);
+	}
+
+	&:hover::after {
+		scale: 2;
+		opacity: 0;
+	}
+}
+
+/* css */
+.progressing {
+	background: linear-gradient(45deg, #a78bfa, #7e22ce);
+}
+
+.progress-info {
+	transform: translate(-50%, -50%);
+	color: #212529;
+}
+
+.copy-link-btn {
+	&:hover {
+		color: #f9f9f9;
+		background: #495057;
+	}
+
+	&:hover::after {
+		scale: 1;
+	}
+
+	&::after {
+		content: "کپی لینک";
+		color: inherit;
+		opacity: 0.7;
+		pointer-events: none;
+		user-select: none;
+		transition: 0.1s cubic-bezier(0.165, 0.84, 0.44, 1);
+		position: absolute;
+		bottom: 6px;
+		left: 120%;
+		text-wrap: nowrap;
+		font-size: 0.9rem;
+		scale: 0;
+	}
+}
+
+.hide {
+	clip-path: inset(0 0 100% 0);
+	opacity: 0;
+}
+
+.show {
+	animation: show 1s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+}
+
+@keyframes show {
+	to {
+		clip-path: inset(0 0 0 0);
+		opacity: 1;
+	}
+}
+
+.fade {
+	animation: fade 0.2s linear alternate infinite;
+}
+
+@keyframes fade {
+	from {
+		opacity: 0.4;
+	}
+	to {
+		opacity: 1;
+	}
+}
